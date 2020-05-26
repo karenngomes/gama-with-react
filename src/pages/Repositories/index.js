@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./repositories.css";
 
@@ -15,7 +16,12 @@ function Repositories() {
 
   return (
     <div id="container">
-      <h1 className="title">Repositories</h1>
+      <div>
+        <h1 className="title">Repositories</h1>
+        <Link id="linkBack" to="/">
+          <button type="button">Back</button>
+        </Link>
+      </div>
       <ul className="list">
         {repositories.map((repository) => (
           <li key={repository}>

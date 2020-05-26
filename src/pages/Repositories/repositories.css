@@ -4,10 +4,47 @@
   margin: 0 auto;
 }
 
+#container div {
+  display: flex;
+  position: relative;
+}
+
 .title {
   text-align: center;
   font-size: 2rem;
   color: #bd93f9;
+  width: 100%;
+}
+
+#linkBack {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  cursor: auto;
+  text-decoration: none;
+}
+
+#linkBack button {
+  width: 5rem;
+  height: 2.5rem;
+  border: 1px solid #50fa7b;
+  background: #50fa7b;
+  color: #44475a;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+#linkBack button:focus,
+#linkBack button:hover {
+  outline: none;
+  box-shadow: none;
+  opacity: 0.7;
 }
 
 .list {
