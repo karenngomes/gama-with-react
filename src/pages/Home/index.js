@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./home.css";
+
 function Home() {
   const [user, setUser] = useState("");
 
@@ -11,17 +13,17 @@ function Home() {
   }
 
   return (
-    <>
+    <div id="containerUser">
       <input
         className="inputUser"
         placeholder="User"
         value={user}
         onChange={(e) => setUser(e.target.value)}
       />
-      <button type="button" onClick={handleSearch}>
+      <button id="buttonUser" type="button" onClick={handleSearch}>
         Search
       </button>
-    </>
+    </div>
   );
 }
 
