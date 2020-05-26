@@ -11,18 +11,24 @@ function Home() {
 
   function handleSearch() {
     axios
+      .get(`https://api.github.com/users/${user}`)
+      .then((response) => {
+        const name = response.data.name;
+
+        localStorage.setItem("userName", name);
+        setError(false);
+      })
+      .catch(() => {
+        setError(true);
+      });
+
+    axios
       .get(`https://api.github.com/users/${user}/repos`)
       .then((response) => {
         const repositories = response.data;
-        let repositoriesName = [];
-        repositories.map((repository) => {
-          repositoriesName.push(repository.name);
-        });
 
-        localStorage.setItem(
-          "repositoriesName",
-          JSON.stringify(repositoriesName)
-        );
+        localStorage.setItem("repositories", JSON.stringify(repositories));
+        localStorage.setItem("user", user);
         setError(false);
         history.push("/repositories");
       })
