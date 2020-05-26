@@ -7,9 +7,18 @@ function Home() {
   const [user, setUser] = useState("");
 
   function handleSearch() {
-    axios
-      .get(`https://api.github.com/users/${user}/repos`)
-      .then((response) => console.log(response.data));
+    axios.get(`https://api.github.com/users/${user}/repos`).then((response) => {
+      const repositories = response.data;
+      let repositoriesName = [];
+      repositories.map((repository) => {
+        repositoriesName.push(repository.name);
+      });
+
+      localStorage.setItem(
+        "repositoriesName",
+        JSON.stringify(repositoriesName)
+      );
+    });
   }
 
   return (
