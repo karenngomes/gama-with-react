@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import "./home.css";
 
 function Home() {
+  const history = useHistory();
   const [user, setUser] = useState("");
 
   function handleSearch() {
@@ -18,6 +20,8 @@ function Home() {
         "repositoriesName",
         JSON.stringify(repositoriesName)
       );
+
+      history.push("/repositories");
     });
   }
 
