@@ -51,7 +51,7 @@ function Repositories() {
               </a>
             </div>
             <div>
-              <span>Star total: &nbsp;</span> {repository.stargazers_count}
+              <span>Stars total: &nbsp;</span> {repository.stargazers_count}
             </div>
           </li>
         ))}
