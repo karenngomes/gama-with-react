@@ -7,35 +7,44 @@ import "./home.css";
 function Home() {
   const history = useHistory();
   const [user, setUser] = useState("");
+  const [error, setError] = useState(false);
 
   function handleSearch() {
-    axios.get(`https://api.github.com/users/${user}/repos`).then((response) => {
-      const repositories = response.data;
-      let repositoriesName = [];
-      repositories.map((repository) => {
-        repositoriesName.push(repository.name);
+    axios
+      .get(`https://api.github.com/users/${user}/repos`)
+      .then((response) => {
+        const repositories = response.data;
+        let repositoriesName = [];
+        repositories.map((repository) => {
+          repositoriesName.push(repository.name);
+        });
+
+        localStorage.setItem(
+          "repositoriesName",
+          JSON.stringify(repositoriesName)
+        );
+        setError(false);
+        history.push("/repositories");
+      })
+      .catch(() => {
+        setError(true);
       });
-
-      localStorage.setItem(
-        "repositoriesName",
-        JSON.stringify(repositoriesName)
-      );
-
-      history.push("/repositories");
-    });
   }
 
   return (
     <div id="containerUser">
-      <input
-        className="inputUser"
-        placeholder="User"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-      />
-      <button id="buttonUser" type="button" onClick={handleSearch}>
-        Search
-      </button>
+      <div id="content">
+        <input
+          className="inputUser"
+          placeholder="User"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+        />
+        <button id="buttonUser" type="button" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+      {error && <span>Unknown error occurred. Try again.</span>}
     </div>
   );
 }
